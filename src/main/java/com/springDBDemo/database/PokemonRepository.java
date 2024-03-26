@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 public interface PokemonRepository {
 
     void customInsertPokemon(String name, String type, int level);
-
+    PokemonModel findPokemonByID(int id);
 }
