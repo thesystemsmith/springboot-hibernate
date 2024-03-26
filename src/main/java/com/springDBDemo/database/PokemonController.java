@@ -24,4 +24,16 @@ public class PokemonController {
     public String getPokemon(@RequestParam int id) {
         return pokemonRepository.findPokemonByID(id).toString();
     }
+
+    @GetMapping("/updatePokemonName")
+    public String updatePokemonName(@RequestParam int id, @RequestParam String newName) {
+        pokemonRepository.updatePokemonName(id, newName);
+        return "Pokemon name updated";
+    }
+
+    @GetMapping("/deletePokemon")
+    public String deletePokemonById(@RequestParam int id) {
+        pokemonRepository.deletePokemonById(id);
+        return "Pokemon deleted";
+    }
 }

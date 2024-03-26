@@ -36,9 +36,26 @@ public class PokemonRepositoryImpl implements PokemonRepository {
 
     // query based on name
     public PokemonModel findPokemonByName(String name) {
-    TypedQuery<PokemonModel> query = entityManager.createQuery("From PokemonModel where name=:n",
+        TypedQuery<PokemonModel> query = entityManager.createQuery("From PokemonModel where name=:n",
                 PokemonModel.class);
-    query.setParameter("n", name);
-    return query.getSingleResult();
-}
+        query.setParameter("n", name);
+        return query.getSingleResult();
+    }
+
+    @Transactional
+    public void updatePokemonName(int id, String newName){
+        PokemonModel pokemon = entityManager.find(PokemonModel.class, id);
+        if(pokemon != null) {
+            pokemon.setName(newName); //implement this setter in the model
+            entityManager.merge(pokemon);
+        }
+    }
+
+    @Transactional
+    public void deletePokemonById(int id) {
+        PokemonModel pokemon = entityManager.find(PokemonModel.class, id);
+        if(pokemon != null){
+            entityManager.remove(pokemon);
+        }
+    }
 }
