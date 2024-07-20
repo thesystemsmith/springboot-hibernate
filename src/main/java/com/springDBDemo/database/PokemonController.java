@@ -14,7 +14,7 @@ public class PokemonController {
         this.pokemonRepository = pokemonRepository;
     }
     
-    @GetMapping("insertPokemon")
+    @GetMapping("/insertPokemon")
     public String insertPokemon(@RequestParam String name, @RequestParam String type, @RequestParam int level){
         pokemonRepository.customInsertPokemon(name, type, level);
         return "new pokemon added";
