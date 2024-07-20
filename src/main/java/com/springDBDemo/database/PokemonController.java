@@ -2,6 +2,7 @@ package com.springDBDemo.database;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -14,7 +15,7 @@ public class PokemonController {
         this.pokemonRepository = pokemonRepository;
     }
     
-    @GetMapping("/insertPokemon")
+    @PostMapping("/insertPokemon")
     public String insertPokemon(@RequestParam String name, @RequestParam String type, @RequestParam int level){
         pokemonRepository.customInsertPokemon(name, type, level);
         return "new pokemon added";
